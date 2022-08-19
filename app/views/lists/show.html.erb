@@ -1,0 +1,49 @@
+<h3><%= @list.name %></h3>
+
+
+<button class="button-delete btn btn-info">Delete the list</button>
+<%= link_to "", list_path(@list), method: :delete, id: "delete-link", class: "hidden" %>
+
+<div class="container">
+  <div class="card-show-title">
+    <h1>Movies 🎬</h1>
+  </div>
+    <div class="row cards-movie">
+      <% @list.bookmarks.each do |bookmark| %>
+        <div class="col-6-sm">
+          <div class="card-movie">
+          <div class="card-poster">
+              <%= image_tag bookmark.movie.poster_url, alt: "movie poster" %>
+          </div>
+          <div class="card-description">
+            <div class="card-title">
+              <h5><%= bookmark.movie.title %></h5>
+              <p> <%= bookmark.movie.rating %> ⭐️</p>
+            </div>
+            <div class="card-overview">
+              <p> <%= bookmark.movie.overview %> </p>
+            </div>
+            <hr>
+              <p><strong>Review</strong></p>
+            <div class="card-review">
+              <p><%= bookmark.comment %></p>
+            <%= link_to "Remove movie from list", bookmark_path(bookmark), method: :delete, id:"delete-movie" %>
+            </div>
+            <h1>-------------------</h1>
+          </div>
+        </div>
+      </div>
+      <% end %>
+  </div>
+
+    <div class="row">
+      <div class="col-12">
+        <hr>
+        <div class="form">
+         <h3>Add a new movie to this list</h3>
+      </div>
+      </div>
+      <%= render 'form', list: @list, bookmark: @bookmark %>
+      <h4><%= link_to "Back", lists_path %></h4>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="home-banner">
+  <h1><span id="banner-typed-text">The best website landing page</span></h1>
+</div>
+
+<div class="container">
+  <div class="row cards">
+    <% @lists.each do |list| %>
+      <div class="col-4-sm">
+            <h3><%= link_to list.name, list_path(list)%></h3>
+      </div>
+      <% end %>
+    </div>
+</div>
